@@ -1,6 +1,6 @@
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
+import keras
+from keras import ops
 
 def create_windows(signal, window_size=50):
     """
@@ -31,7 +31,7 @@ class SignalCompression(keras.layers.Layer):
         )
 
     def call(self, inputs):
-        return tf.nn.relu(tf.matmul(inputs, self.w) + self.b)
+        return ops.relu(ops.matmul(inputs, self.w) + self.b)
 
 class SignalExpansion(keras.layers.Layer):
     def __init__(self, output_dim=50, **kwargs):
@@ -53,7 +53,7 @@ class SignalExpansion(keras.layers.Layer):
         )
 
     def call(self, inputs):
-        return tf.matmul(inputs, self.w) + self.b
+        return ops.matmul(inputs, self.w) + self.b
 
 class PhysicsAutoencoder(keras.Model):
     def __init__(self, **kwargs):
