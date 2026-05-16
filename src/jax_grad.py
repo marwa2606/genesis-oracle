@@ -24,8 +24,8 @@ def main():
     
     # 3. Gradient descent loop
     v_initial = 10.0
-    learning_rate = 0.00001
-    iterations = 20
+    learning_rate = 0.001
+    iterations = 200
     
     print("Starting gradient descent optimization...")
     
