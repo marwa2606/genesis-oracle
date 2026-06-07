@@ -51,3 +51,21 @@ We also explored how FNOs overcome the PINN's limitation of being tied to a sing
 - **Zero-Shot Generalization:** Weights parameterize the continuous frequency domain, enabling instant predictions for entirely new initial conditions without retraining.
 
 Full details in the [Fabric Report](docs/Fabric_Report.md).
+
+## Week 6: High-Performance Simulations (Monte Carlo & Markov Chain)
+
+This week, we focused on implementing high-performance numerical simulations utilizing NumPy and pure JAX for parallelized execution and profiling.
+
+### Classical Pi Estimation ([src/classical_pi.py](../src/classical_pi.py))
+- **Method:** Implemented a standard Monte Carlo Pi estimation utilizing NumPy's uniform distribution to sample points inside a unit square.
+- **Visualization:** Outputs a color-coded scatter plot of inside/outside points saved to `data/classical_pi_disp.png`.
+
+### High-Performance JAX Monte Carlo ([src/monte_carlo.py](../src/monte_carlo.py))
+- **Parallelization & JIT:** Re-implemented the business revenue model using `jax.vmap` for parallel scenario simulation (1,000,000 runs) and `jax.jit` for compiling the computational graph via XLA.
+- **Stress-Testing & Profiling:** Conducted parameter sweep testing on cost volatility ($\sigma$) and analyzed JAX JIT compilation overhead. The complete analysis is documented in the [Swarm Stress Report](Swarm_Stress_Report.md).
+
+### Markov Chain Economic Simulation ([src/markov_boss.py](../src/markov_boss.py))
+- **Multi-Agent Simulation:** Modeled 100,000 independent agents transitioning across three economic states (Bull Market, Stagnation, Recession) over 365 days using JAX `lax.scan` and `vmap`.
+- **Black Swan Shock:** Injected an 11-day recession shock (Days 180-190) where recession probability spiked to 80%, driving over 76% of agents into a recession simultaneously.
+- **Visualization:** Tracks state proportions daily and outputs a premium time-series visualization to `data/markov_states.png`.
+
