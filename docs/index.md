@@ -69,3 +69,26 @@ This week, we focused on implementing high-performance numerical simulations uti
 - **Black Swan Shock:** Injected an 11-day recession shock (Days 180-190) where recession probability spiked to 80%, driving over 76% of agents into a recession simultaneously.
 - **Visualization:** Tracks state proportions daily and outputs a premium time-series visualization to `data/markov_states.png`.
 
+## Week 7: Oracle Integration & AI Security
+
+This week, we integrated the system with Google's Gemini API (using the new `google-genai` SDK) to build interactive visual auditing tools, structured decision-making loops, and defensive prompt security configurations.
+
+### Oracle Connectivity ([src/oracle_ping.py](../src/oracle_ping.py))
+- Established API connectivity with the `gemini-2.5-flash` model. 
+- Integrated custom `GEMINI_API_KEY` environment loading to ensure no keys are hardcoded in the codebase.
+
+### Multimodal Visual Audit ([src/generate_signals.py](../src/generate_signals.py) & [src/visual_audit.py](../src/visual_audit.py))
+- **Signal Generation:** Generated a 500-step sine wave and injected a random 20-step clipping/saturation artifact. Plotted the results in dark mode and saved as `data/audit_target.png`.
+- **AI Investigation:** Used Gemini's multimodal capacity to read the plot bytes directly, locate the X-axis bounds of the anomaly, and compose a poem mocking the team for allowing the bug to pass.
+
+### Structured Control Loops ([src/sandbox_env.py](../src/sandbox_env.py) & [src/game_loop.py](../src/game_loop.py))
+- Implemented a 5-step thermal dampener controller where `gemini-2.5-flash` receives telemetry logs and makes control adjustments.
+- Structured Gemini's outputs into a type-safe Pydantic schema (`ControlDecision`) using structured JSON mode to guarantee valid state changes.
+
+### Prompt Hardening and Security ([src/defensive_agent.py](../src/defensive_agent.py))
+- Built a secure log parser comparing unprotected prompts against hardened variants.
+- Demonstrated defenses against prompt injection attacks by leveraging XML delimiters, strict system role definitions, negative constraints, and explicit anomaly flagging.
+
+Full details are documented in the [Cerebral Nexus Report](Cerebral_Nexus_Report.md).
+
+
