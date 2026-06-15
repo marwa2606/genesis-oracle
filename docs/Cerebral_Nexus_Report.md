@@ -76,3 +76,14 @@ All scripts are finalized and committed to the main branch:
 *   [sandbox_env.py](../src/sandbox_env.py) - Thermal simulation logic.
 *   [game_loop.py](../src/game_loop.py) - 5-turn structured response control loop.
 *   [defensive_agent.py](../src/defensive_agent.py) - Log parser security evaluation.
+
+---
+
+### Exercise 6: Structural Deep Dive
+
+#### Conceptual Summary: Attention vs. LSTMs
+Scaled Dot-Product Attention in Transformers processes entire historical context windows concurrently by projecting all input tokens into Query, Key, and Value matrices simultaneously and calculating attention weights for all pairs in parallel. This design computes pairwise similarities across the entire sequence at once, creating direct paths of information flow between any two timesteps regardless of distance. In contrast, LSTMs must process telemetry streams sequentially step-by-step, compressing historical details into a single hidden state bottleneck that inevitably degrades or loses information over long time horizons. Consequently, Transformers avoid vanishing gradients and sequential computational bottlenecks, making them dramatically superior for capturing long-term dependencies and abrupt changes in simulation telemetry.
+
+#### Alignment & Safety via Google Tunix (GRPO)
+Tunix is a JAX-native post-training library that implements Group Relative Policy Optimization (GRPO) to align AI agents by generating a group of candidate response trajectories and evaluating their relative advantages without needing a separate critic model. By training agents within a multi-turn tool-use reinforcement learning framework, Tunix exposes the agent policy to real or simulated environment rewards based on safety and correctness. This feedback loop allows the policy to learn negative rewards for executing destructive, unvalidated, or hazardous terminal commands. Consequently, the agent is trained to proactively verify commands, check system constraints, and handle errors, enabling it to safely invoke terminal tools without causing system failures.
+
