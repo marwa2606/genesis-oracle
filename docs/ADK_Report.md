@@ -1,0 +1,3 @@
+## Reflection: Week 10 - ADK 
+
+Compared to Week 9, the ADK automatically handles state tracking and tool calling, which significantly simplifies the implementation. In Week 9, I had to implement the execution loop and manage the interaction between the model and the tools manually. With the ADK, this functionality is built in, resulting in cleaner code and allowing me to focus on the agent's behavior instead of the underlying control logic.
