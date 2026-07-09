@@ -12,3 +12,11 @@ wheels/
 
 # Environments
 .env
+    
+science-skills/
+.adk/
+*.db
+
+# Git submodules
+# Commented out for future potential use
+# scholar_prime/
