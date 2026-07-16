@@ -12,6 +12,7 @@ dependencies = [
     "jaxlib>=0.10.0",
     "keras>=3.0.7",
     "matplotlib>=3.10.9",
+    "mcp>=1.28.1",
     "numpy>=2.4.4",
     "plotly>=6.7.0",
     "pydantic>=2.13.4",
