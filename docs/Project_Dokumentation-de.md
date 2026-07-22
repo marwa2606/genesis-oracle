@@ -13,7 +13,7 @@
 1. [Einleitung & Motivation](#1-einleitung--motivation)
 2. [Mathematisches Modell](#2-mathematisches-modell)
 3. [Implementierung](#3-implementierung)
-4. [Testen des Agenten & Ergebnisse](#4-testen-des-agenten-und-ergebnisse)
+4. [Testen des Agenten & Ergebnisse](#4-testen-des-agenten-und-ergebnisse )
 5. [Fazit & Ausblick](#5-fazit--ausblick)
 6. [Referenzen](#6-referenzen)
 
@@ -76,7 +76,7 @@ R' = δ·S + α·S·Z - ζ·R
 | β | 0.0095 |Infektionsrate |
 | ζ | 0.0001 |Wiederauferstehungsrate von Toten zu Zombies |
 | δ | 0.0001 |Natürliche Todesrate |
-| Π | 0 |Geburtenrate |
+| Π | ~0 |Geburtenrate |
 | N | 500 |Gesamtpopulation |
 
  
@@ -95,7 +95,7 @@ Die Umsetzung erfolgte mit Unterstützung von Antigravity als Entwicklungsumgebu
 
 ---
 
-## 3.2 Tools 
+## 3.2 Tools [./Project/tools.py](https://github.com/marwa2606/genesis-oracle/blob/main/Project/tools.py)
 
 
 
@@ -138,12 +138,13 @@ auf die Überlebenschancen der Menschheit.
 **Methode:**
 - `n_scenarios` (max 5000) zufällige Parameterkombinationen
 - Zufallsgenerator: `numpy.random.default_rng(seed=42)` → reproduzierbar
-- Parameter werden gleichverteilt gesampelt:
-| Parameter | Verteilung |
-|-----------|------------|
-| beta | U(0.005, 0.015) |
-| alpha | U(0.001, 0.015) |
-| zeta | U(0.00001, 0.001) |
+- Parameter werden gleichverteilt gesampelt:   
+   
+    | Parameter | Verteilung |   
+    |-----------|------------|     
+    | beta | U(0.005, 0.015) |  
+    | alpha | U(0.001, 0.015) |
+    | zeta | U(0.00001, 0.001) |
  
 **Output:** Überlebenswahrscheinlichkeit P(S > 50), mittlere
 Überlebende, bester gefundener Alpha-Wert
@@ -193,15 +194,12 @@ Recommended Strategy    : Enhanced strike operations required.
 ```
  
 ---
-## 3.3 Observer-Prime Agent
+## 3.3 Observer-Prime Agent [./Project/agent.py](https://github.com/marwa2606/genesis-oracle/blob/main/Project/agent.py)
 
 Zur Steuerung der Simulationen wurde der KI-Agent **Observer-Prime** entwickelt. Der Agent basiert auf dem Google Agent Development Kit (ADK) und verwendet das Sprachmodell Gemini.
 
 Je nach Benutzeranfrage entscheidet der Agent selbst, welches der drei Werkzeuge ausgeführt werden muss. Anschließend fasst er die Ergebnisse zusammen und gibt eine verständliche Interpretation aus.
 
-
-
-**GitHub:** [cognitive_core/agent.py](https://github.com/marwa2606/genesis-oracle/blob/main/cognitive_core/agent.py)
 
 #### Agent Konfiguration
 
@@ -209,9 +207,11 @@ Je nach Benutzeranfrage entscheidet der Agent selbst, welches der drei Werkzeuge
 |-----------|------|
 | Model | gemini-3.5-flash |
 | Name | observer_prime |
-| Tools | 3 (siehe unten) |
+| Tools | 3  |
 
-**GitHub:** [cognitive_core/agent.py](https://github.com/marwa2606/genesis-oracle/blob/main/cognitive_core/agent.py)
+![ADK Web UI](../data/projekt_1.png)
+*Abbildung 2: Observer-Prime Agent in der ADK Web UI*
+
 
 #### Agent Reasoning Prozess
 
@@ -228,9 +228,7 @@ Der Agent folgt einem festen 5-Schritte Reasoning-Prozess:
 
 Dadurch entsteht ein interaktiver Workflow, bei dem Simulation und Analyse automatisch miteinander verbunden werden.
 
- 4.3 Tool Calling Architektur
-![ADK Web UI](../data/projekt_1.png)
-*Abbildung 4: Observer-Prime Agent in der ADK Web UI*
+ 
 
 
 
@@ -300,7 +298,7 @@ angepasst werden – S wird zu "Susceptible", Z zu "Infected".
 Observer-Prime könnte mit einem Scholar-Prime Agenten kombiniert
 werden, der automatisch verwandte Paper auf arXiv sucht und
 Modellparameter aus Abstracts extrahiert (bereits implementiert
-in `cognitive_core/agent.py` via `search_arxiv` Tool).
+in `cognitive_core/agent.py` via `search_arxiv` Tool ).
  
 **Erweiterte Modelle:**
 - Quarantäne-Modell als viertes Tool
@@ -313,8 +311,6 @@ in `cognitive_core/agent.py` via `search_arxiv` Tool).
 ## 6. Referenzen
 
 - Munz, P., Hudea, I., Imad, J., Smith?, R.J. (2009). *When Zombies Attack!: Mathematical Modelling of an Outbreak of Zombie Infection.* In: Infectious Disease Modelling Research Progress, pp. 133–150. Nova Science Publishers. ISBN 978-1-60741-347-9.
-
-- Google DeepMind (2024). *JAX: Composable transformations of Python+NumPy programs.* [github.com/google/jax](https://github.com/google/jax)
-
+- Gemini API Docs [ai.google.dev/gemini-api/docs?hl=de](https://ai.google.dev/gemini-api/docs?hl=de)
 - Google (2025). *Agent Development Kit (ADK).* [google.github.io/adk-docs](https://google.github.io/adk-docs)
 
