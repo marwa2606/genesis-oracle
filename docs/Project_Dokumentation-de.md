@@ -210,6 +210,7 @@ Je nach Benutzeranfrage entscheidet der Agent selbst, welches der drei Werkzeuge
 | Tools | 3  |
 
 ![ADK Web UI](../data/projekt_1.png)
+
 *Abbildung 2: Observer-Prime Agent in der ADK Web UI*
 
 
@@ -311,6 +312,8 @@ in `cognitive_core/agent.py` via `search_arxiv` Tool ).
 ## 6. Referenzen
 
 - Munz, P., Hudea, I., Imad, J., Smith?, R.J. (2009). *When Zombies Attack!: Mathematical Modelling of an Outbreak of Zombie Infection.* In: Infectious Disease Modelling Research Progress, pp. 133–150. Nova Science Publishers. ISBN 978-1-60741-347-9.
-- Gemini API Docs [ai.google.dev/gemini-api/docs?hl=de](https://ai.google.dev/gemini-api/docs?hl=de)
+- Google DeepMind (2024). *Gemini: A Family of Highly Capable
+  Multimodal Models.*
+  [deepmind.google/gemini](https://deepmind.google/technologies/gemini)
 - Google (2025). *Agent Development Kit (ADK).* [google.github.io/adk-docs](https://google.github.io/adk-docs)
 
